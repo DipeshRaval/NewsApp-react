@@ -7,7 +7,7 @@ import LoadingBar from "react-top-loading-bar";
 
 export class App extends Component {
   pageSize = 8;
-  apiKey = process.env.REACT_APP_API_KEY
+  apiKey = process.env.API_KEY;
 
   state = {
     progress: 0,
@@ -20,7 +20,6 @@ export class App extends Component {
   render() {
     return (
       <Router>
-        {console.log(this.apiKey)}
         <div>
           <LoadingBar
             color="#3489eb"

@@ -6,12 +6,7 @@ export class NewsItem extends Component {
     return (
       <div className="container">
         <div className="card" style={{ width: "18rem" }}>
-          <div style={{
-            display : "flex",
-            position : "absolute",
-            right : "0",
-            justifyContent : "flex-end"
-          }}>
+          <div>
             <span
               className="badge rounded-pill bg-danger"
               style={{ left: "90%" }}

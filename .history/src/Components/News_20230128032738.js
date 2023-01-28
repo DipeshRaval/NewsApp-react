@@ -34,7 +34,7 @@ export class News extends Component {
     this.props.setProgress(10);
     this.setState({ loading: true });
     let data = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${pageNo}&pageSize=${this.props.pageSize}`
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apKey}&page=${pageNo}&pageSize=${this.props.pageSize}`
     );
     this.props.setProgress(30);
     let parseData = await data.json();
@@ -74,7 +74,7 @@ export class News extends Component {
   render() {
     return (
       <>
-        <h2 className="text-center" style={{marginTop : "70px"}}>
+        <h2 className="text-center my-3" style={{marginTop : 370}}>
           NewMoneky - Top {this.props.category} Headlines
         </h2>
 

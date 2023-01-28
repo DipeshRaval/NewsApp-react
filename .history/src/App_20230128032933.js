@@ -7,34 +7,28 @@ import LoadingBar from "react-top-loading-bar";
 
 export class App extends Component {
   pageSize = 8;
-  apiKey = process.env.REACT_APP_API_KEY
+  apiKey = process.env.API_KEY;
 
   state = {
     progress: 0,
   };
 
-  setProgress = (progress) => {
+  setProgress = (progress)=>{
     this.setState({ progress: progress });
   };
 
   render() {
     return (
       <Router>
-        {console.log(this.apiKey)}
         <div>
-          <LoadingBar
-            color="#3489eb"
-            progress={this.state.progress}
-            height={3}
-          />
+          <LoadingBar color="#3489eb" progress={this.state.progress} height={3} />
           <Navbar />
           <Routes>
             <Route
               exact
               path="/business"
               element={
-                <News
-                  apiKey={this.apiKey}
+                <News apiKey={this.apiKey}
                   setProgress={this.setProgress}
                   key="business"
                   pageSize={this.pageSize}
@@ -47,8 +41,7 @@ export class App extends Component {
               exact
               path="/sports"
               element={
-                <News
-                  apiKey={this.apiKey}
+                <News apiKey={this.apiKey}
                   setProgress={this.setProgress}
                   key="sports"
                   pageSize={this.pageSize}
@@ -61,8 +54,7 @@ export class App extends Component {
               exact
               path="/entertainment"
               element={
-                <News
-                  apiKey={this.apiKey}
+                <News apiKey={this.apiKey}
                   setProgress={this.setProgress}
                   key="entertainment"
                   pageSize={this.pageSize}
@@ -75,8 +67,7 @@ export class App extends Component {
               exact
               path="/health"
               element={
-                <News
-                  apiKey={this.apiKey}
+                <News apiKey={this.apiKey}
                   setProgress={this.setProgress}
                   key="health"
                   pageSize={this.pageSize}
@@ -89,8 +80,7 @@ export class App extends Component {
               exact
               path="/science"
               element={
-                <News
-                  apiKey={this.apiKey}
+                <News apiKey={this.apiKey}
                   key="science"
                   setProgress={this.setProgress}
                   pageSize={this.pageSize}
@@ -103,8 +93,7 @@ export class App extends Component {
               exact
               path="/technology"
               element={
-                <News
-                  apiKey={this.apiKey}
+                <News apiKey={this.apiKey}
                   key="technology"
                   setProgress={this.setProgress}
                   pageSize={this.pageSize}
@@ -117,8 +106,7 @@ export class App extends Component {
               exact
               path="/"
               element={
-                <News
-                  apiKey={this.apiKey}
+                <News apiKey={this.apiKey}
                   key="general"
                   setProgress={this.setProgress}
                   pageSize={this.pageSize}

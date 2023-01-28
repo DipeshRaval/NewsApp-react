@@ -4,7 +4,7 @@ import load from "./load.gif";
 export class Load extends Component {
   render() {
     return (
-      <div className="text-center">
+      <div className="text-center my-4">
         <img
           src={load}
           alt="Loading..."

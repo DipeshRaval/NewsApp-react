@@ -8,7 +8,7 @@ export class NewsItem extends Component {
         <div className="card" style={{ width: "18rem" }}>
           <div style={{
             display : "flex",
-            position : "absolute",
+            position : "absolute"
             right : "0",
             justifyContent : "flex-end"
           }}>

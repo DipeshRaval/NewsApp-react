@@ -74,7 +74,7 @@ export class News extends Component {
   render() {
     return (
       <>
-        <h2 className="text-center" style={{marginTop : "70px"}}>
+        <h2 className="text-center my-3" style={{marginTop : 370}}>
           NewMoneky - Top {this.props.category} Headlines
         </h2>
 
