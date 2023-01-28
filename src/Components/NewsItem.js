@@ -5,7 +5,7 @@ export class NewsItem extends Component {
     let { title, description, urlImage, urlNews, source, date } = this.props;
     return (
       <div className="container">
-        <div className="card" style={{ width: "24rem" }}>
+        <div className="card" style={{ width: "18rem" }}>
           <span
             className="position-absolute top-0 translate-middle badge rounded-pill bg-danger"
             style={{ left: "90%" }}
