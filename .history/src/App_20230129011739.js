@@ -11,7 +11,7 @@ const App = () => {
 
   let [progress, setProgressVal] = useState(0);
 
-  const setProgress = (progress) => {
+  setProgress = (progress) => {
     setProgressVal(progress);
   };
 

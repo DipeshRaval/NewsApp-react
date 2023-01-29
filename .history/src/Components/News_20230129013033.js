@@ -34,20 +34,27 @@ const News = (props)=>{
   const fetchMoreData = async () => {
     setLoading(true)
     let data = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=0cd67630af6747ff8cc488b160ee759b&page=${page + 1}&pageSize=${props.pageSize}`
+      `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=0cd67630af6747ff8cc488b160ee759b&page=${this.state.page + 1}&pageSize=${props.pageSize}`
     );
     let parseData = await data.json();
+    this.setState({
+      articles: this.state.articles.concat(parseData.articles),
+      totalResults: parseData.totalResults,
+      page: this.state.page + 1,
+      loading: false,
+    });
 
-    setArticles(articles.concat(parseData.articles));
+    setArticles(parseData.articles);
     setTotalResults(parseData.totalResults);
-    setPage(page + 1);
+    setPage(pageNo);
     setLoading(false)
   }; 
   
-  useEffect(() => {
-    updateNews(page);
-    document.title = `News24/7 - ${capitalizeFirstLetter(props.category)}`
-  },[]);
+
+  async function componentDidMount() {
+    updateNews(this.state.page);
+    // document.title = `News24/7 - ${this.capitalizeFirstLetter(props.category)}`
+  }
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -59,17 +66,17 @@ const News = (props)=>{
           NewMoneky - Top {props.category} Headlines
         </h2>
 
-        {loading ? <Load /> : ""}
+        {this.state.loading ? <Load /> : ""}
 
         <InfiniteScroll
-          dataLength={articles.length}
-          next={fetchMoreData}
-          hasMore={articles.length !== totalResults}
+          dataLength={this.state.articles.length}
+          next={this.fetchMoreData}
+          hasMore={this.state.articles.length !== this.state.totalResults}
           loader={<Load />}
         >
           <div className="container">
             <div className="row my-3">
-              {articles.map((ele) => {
+              {this.state.articles.map((ele) => {
                 return (
                   <div key={ele.url} className="col-md-4 mb-3">
                     <NewsItem

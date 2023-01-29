@@ -11,12 +11,13 @@ const App = () => {
 
   let [progress, setProgressVal] = useState(0);
 
-  const setProgress = (progress) => {
+  setProgress = (progress) => {
     setProgressVal(progress);
   };
 
   return (
     <Router>
+      {console.log(this.apiKey)}
       <div>
         <LoadingBar color="#3489eb" progress={progress} height={3} />
         <Navbar />
@@ -26,10 +27,10 @@ const App = () => {
             path="/business"
             element={
               <News
-                apiKey={apiKey}
-                setProgress={setProgress}
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
                 key="business"
-                pageSize={pageSize}
+                pageSize={this.pageSize}
                 category="business"
                 country="in"
               />
@@ -40,10 +41,10 @@ const App = () => {
             path="/sports"
             element={
               <News
-                apiKey={apiKey}
-                setProgress={setProgress}
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
                 key="sports"
-                pageSize={pageSize}
+                pageSize={this.pageSize}
                 category="sports"
                 country="in"
               />
@@ -54,10 +55,10 @@ const App = () => {
             path="/entertainment"
             element={
               <News
-                apiKey={apiKey}
-                setProgress={setProgress}
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
                 key="entertainment"
-                pageSize={pageSize}
+                pageSize={this.pageSize}
                 category="entertainment"
                 country="in"
               />
@@ -68,10 +69,10 @@ const App = () => {
             path="/health"
             element={
               <News
-                apiKey={apiKey}
-                setProgress={setProgress}
+                apiKey={this.apiKey}
+                setProgress={this.setProgress}
                 key="health"
-                pageSize={pageSize}
+                pageSize={this.pageSize}
                 category="health"
                 country="in"
               />
@@ -82,10 +83,10 @@ const App = () => {
             path="/science"
             element={
               <News
-                apiKey={apiKey}
+                apiKey={this.apiKey}
                 key="science"
-                setProgress={setProgress}
-                pageSize={pageSize}
+                setProgress={this.setProgress}
+                pageSize={this.pageSize}
                 category="science"
                 country="in"
               />
@@ -96,10 +97,10 @@ const App = () => {
             path="/technology"
             element={
               <News
-                apiKey={apiKey}
+                apiKey={this.apiKey}
                 key="technology"
-                setProgress={setProgress}
-                pageSize={pageSize}
+                setProgress={this.setProgress}
+                pageSize={this.pageSize}
                 category="technology"
                 country="in"
               />
@@ -110,10 +111,10 @@ const App = () => {
             path="/"
             element={
               <News
-                apiKey={apiKey}
+                apiKey={this.apiKey}
                 key="general"
-                setProgress={setProgress}
-                pageSize={pageSize}
+                setProgress={this.setProgress}
+                pageSize={this.pageSize}
                 category="general"
                 country="in"
               />

@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewsItem = (props) => {
+export class NewsItem extends Component {
     let { title, description, urlImage, urlNews, source, date } = props;
     return (
       <div className="container">

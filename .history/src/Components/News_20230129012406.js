@@ -13,63 +13,64 @@ const News = (props)=>{
   let [totalResults, setTotalResults] = useState(0);
  
 
-  async function updateNews(pageNo) {
-    props.setProgress(10);
-    setLoading(true)
+  async updateNews(pageNo) {
+    this.props.setProgress(10);
+    this.setState({ loading: true });
     let data = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${pageNo}&pageSize=${props.pageSize}`
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${pageNo}&pageSize=${this.props.pageSize}`
     );
-    props.setProgress(30);
+    this.props.setProgress(30);
     let parseData = await data.json();
-    props.setProgress(70);
-
-    setArticles(parseData.articles);
-    setTotalResults(parseData.totalResults);
-    setPage(pageNo);
-    setLoading(false)
-
-    props.setProgress(100);
+    this.props.setProgress(70);
+    this.setState({
+      articles: parseData.articles,
+      totalResults: parseData.totalResults,
+      page: pageNo,
+      loading: false,
+    });
+    this.props.setProgress(100);
   }
 
-  const fetchMoreData = async () => {
-    setLoading(true)
+  fetchMoreData =async () => {
+    this.setState({ loading: true });
     let data = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=0cd67630af6747ff8cc488b160ee759b&page=${page + 1}&pageSize=${props.pageSize}`
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0cd67630af6747ff8cc488b160ee759b&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`
     );
     let parseData = await data.json();
+    this.setState({
+      articles: this.state.articles.concat(parseData.articles),
+      totalResults: parseData.totalResults,
+      page: this.state.page + 1,
+      loading: false,
+    });
+  };  
 
-    setArticles(articles.concat(parseData.articles));
-    setTotalResults(parseData.totalResults);
-    setPage(page + 1);
-    setLoading(false)
-  }; 
-  
-  useEffect(() => {
-    updateNews(page);
-    document.title = `News24/7 - ${capitalizeFirstLetter(props.category)}`
-  },[]);
+  async componentDidMount() {
+    this.updateNews(this.state.page);
+    document.title = `News24/7 - ${this.capitalizeFirstLetter(this.props.category)}`
+  }
 
-  function capitalizeFirstLetter(string) {
+  capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
     return (
       <>
         <h2 className="text-center" style={{marginTop : "70px"}}>
-          NewMoneky - Top {props.category} Headlines
+          NewMoneky - Top {this.props.category} Headlines
         </h2>
 
-        {loading ? <Load /> : ""}
+        {this.state.loading ? <Load /> : ""}
 
         <InfiniteScroll
-          dataLength={articles.length}
-          next={fetchMoreData}
-          hasMore={articles.length !== totalResults}
+          dataLength={this.state.articles.length}
+          next={this.fetchMoreData}
+          hasMore={this.state.articles.length !== this.state.totalResults}
           loader={<Load />}
         >
           <div className="container">
             <div className="row my-3">
-              {articles.map((ele) => {
+              {this.state.articles.map((ele) => {
                 return (
                   <div key={ele.url} className="col-md-4 mb-3">
                     <NewsItem

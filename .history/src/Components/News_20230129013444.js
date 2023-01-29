@@ -45,9 +45,9 @@ const News = (props)=>{
   }; 
   
   useEffect(() => {
-    updateNews(page);
+    // updateNews(page);
     document.title = `News24/7 - ${capitalizeFirstLetter(props.category)}`
-  },[]);
+  });
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

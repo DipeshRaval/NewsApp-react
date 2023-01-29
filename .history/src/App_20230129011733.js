@@ -11,12 +11,13 @@ const App = () => {
 
   let [progress, setProgressVal] = useState(0);
 
-  const setProgress = (progress) => {
+  setProgress = (progress) => {
     setProgressVal(progress);
   };
 
   return (
     <Router>
+      {console.log(apiKey)}
       <div>
         <LoadingBar color="#3489eb" progress={progress} height={3} />
         <Navbar />

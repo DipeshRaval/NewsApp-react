@@ -1,7 +1,7 @@
 import React from "react";
 
-const NewsItem = (props) => {
-    let { title, description, urlImage, urlNews, source, date } = props;
+export class NewsItem extends Component {
+    let { title, description, urlImage, urlNews, source, date } = this.props;
     return (
       <div className="container">
         <div className="card" style={{ width: "18rem" }}>

@@ -44,10 +44,11 @@ const News = (props)=>{
     setLoading(false)
   }; 
   
-  useEffect(() => {
+
+  async function componentDidMount() {
     updateNews(page);
-    document.title = `News24/7 - ${capitalizeFirstLetter(props.category)}`
-  },[]);
+    // document.title = `News24/7 - ${this.capitalizeFirstLetter(props.category)}`
+  }
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -63,7 +64,7 @@ const News = (props)=>{
 
         <InfiniteScroll
           dataLength={articles.length}
-          next={fetchMoreData}
+          next={this.fetchMoreData}
           hasMore={articles.length !== totalResults}
           loader={<Load />}
         >

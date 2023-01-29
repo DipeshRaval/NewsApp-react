@@ -3,7 +3,7 @@ import load from "./load.gif";
 
 const Load = () => {
   return (
-    <div className="text-center my-3">
+    <div className="text-center my-4">
       <img
         src={load}
         alt="Loading..."
